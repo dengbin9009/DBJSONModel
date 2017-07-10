@@ -1,0 +1,17 @@
+
+{
+  "boolStr1":"true",
+  "boolStr2":"True",
+  "boolStr3":"TRUE",
+  "boolStr4":"yes",
+  "boolStr5":"Yes",
+  "boolStr6":"YES",
+  "boolStr7":"-1",
+  "boolStr8":"0",
+  "boolStr9":"1",
+  "boolBOOL1":true,
+  "boolBOOL2":false,
+  "boolCNumber1":-1,
+  "boolCNumber2":0,
+  "boolCNumber3":1,
+}

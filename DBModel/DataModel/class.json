@@ -1,0 +1,79 @@
+[
+    {
+        "groupLeader": {
+            "name": "小明",
+            "age": 18,
+            "sex": "男",
+            "score": "60",
+            "isClassLeader": 1
+        },
+        "groupMembers": [
+            {
+                "name": "小明",
+                "age": 18,
+                "sex": "男",
+                "score": "60.5",
+                "isClassLeader": true
+            },
+            {
+                "name": "小花",
+                "age": 17,
+                "sex": "女",
+                "score": "100",
+                "isClassLeader": true
+            },
+            {
+                "name": "Lucy",
+                "age": 19,
+                "sex": "女",
+                "score": "90.5"
+            },
+            {
+                "name": "Lily",
+                "age": 18,
+                "sex": "女",
+                "score": "80",
+                "isClassLeader": true
+            }
+        ]
+    },
+    {
+        "groupLeader": {
+            "name": "萌萌",
+            "age": 18,
+            "sex": "男",
+            "score": "100.0",
+            "isClassLeader": true
+        },
+        "groupMembers": [
+            {
+                "name": "萌萌",
+                "age": 18,
+                "sex": "女",
+                "score": "100",
+                "isClassLeader": true
+            },
+            {
+                "name": "康康",
+                "age": 17,
+                "sex": "男",
+                "score": "85.5",
+                "isClassLeader": true
+            },
+            {
+                "name": "伟伟",
+                "age": 19,
+                "sex": "男",
+                "score": "99",
+                "isClassLeader": true
+            },
+            {
+                "name": "CC",
+                "age": 18,
+                "sex": "男",
+                "score": "88",
+                "isClassLeader": true
+            }
+        ]
+    }
+]
