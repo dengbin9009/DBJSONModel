@@ -7,6 +7,7 @@
 //
 
 #import "BlackListViewController.h"
+#import "WholeClassDataModel_Black.h"
 
 @interface BlackListViewController ()
 
@@ -21,10 +22,9 @@
     _textView.text = textFileContents;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
+        WholeClassDataModel_Black *wholeClass = [WholeClassDataModel_Black DB_modelWithJson:textFileContents];
+        NSLog(@"wholeClass:\n%@",wholeClass);
     });
-//    PersonDataModel *person = [PersonDataModel DB_modelWithJson:textFileContents];
-//    NSLog(@"person:\n%@",person);
 }
 
 @end

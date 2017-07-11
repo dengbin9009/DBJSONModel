@@ -42,6 +42,8 @@
 		D355F9BD1F14BEC500328FFE /* TeacherDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D355F9BC1F14BEC500328FFE /* TeacherDataModel.m */; };
 		D355F9BF1F14BFB600328FFE /* wholeClass.json in Resources */ = {isa = PBXBuildFile; fileRef = D355F9BE1F14BFB600328FFE /* wholeClass.json */; };
 		D355F9C11F14BFD400328FFE /* teacher.json in Resources */ = {isa = PBXBuildFile; fileRef = D355F9C01F14BFD400328FFE /* teacher.json */; };
+		D355F9CE1F14DA3900328FFE /* WholeClassDataModel_Black.m in Sources */ = {isa = PBXBuildFile; fileRef = D355F9CD1F14DA3900328FFE /* WholeClassDataModel_Black.m */; };
+		D355F9D11F14DA4200328FFE /* WholeClassDataModel_White.m in Sources */ = {isa = PBXBuildFile; fileRef = D355F9D01F14DA4200328FFE /* WholeClassDataModel_White.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +109,10 @@
 		D355F9BC1F14BEC500328FFE /* TeacherDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherDataModel.m; sourceTree = "<group>"; };
 		D355F9BE1F14BFB600328FFE /* wholeClass.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wholeClass.json; sourceTree = "<group>"; };
 		D355F9C01F14BFD400328FFE /* teacher.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = teacher.json; sourceTree = "<group>"; };
+		D355F9CC1F14DA3900328FFE /* WholeClassDataModel_Black.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WholeClassDataModel_Black.h; sourceTree = "<group>"; };
+		D355F9CD1F14DA3900328FFE /* WholeClassDataModel_Black.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WholeClassDataModel_Black.m; sourceTree = "<group>"; };
+		D355F9CF1F14DA4200328FFE /* WholeClassDataModel_White.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WholeClassDataModel_White.h; sourceTree = "<group>"; };
+		D355F9D01F14DA4200328FFE /* WholeClassDataModel_White.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WholeClassDataModel_White.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +194,10 @@
 				D355F9BC1F14BEC500328FFE /* TeacherDataModel.m */,
 				D355F9B51F14BE8600328FFE /* WholeClassDataModel.h */,
 				D355F9B61F14BE8600328FFE /* WholeClassDataModel.m */,
+				D355F9CC1F14DA3900328FFE /* WholeClassDataModel_Black.h */,
+				D355F9CD1F14DA3900328FFE /* WholeClassDataModel_Black.m */,
+				D355F9CF1F14DA4200328FFE /* WholeClassDataModel_White.h */,
+				D355F9D01F14DA4200328FFE /* WholeClassDataModel_White.m */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -326,6 +336,7 @@
 				D30557021F134CA9007101E5 /* AppDelegate.m in Sources */,
 				D305572E1F135E3E007101E5 /* GroupDataModel.m in Sources */,
 				D30556FF1F134CA9007101E5 /* main.m in Sources */,
+				D355F9CE1F14DA3900328FFE /* WholeClassDataModel_Black.m in Sources */,
 				D305571C1F1350C3007101E5 /* DBValueTransformer.m in Sources */,
 				D305574F1F136562007101E5 /* BlackListViewController.m in Sources */,
 				D305571F1F135104007101E5 /* NSObject+DBModel.m in Sources */,
@@ -339,6 +350,7 @@
 				D355F9BD1F14BEC500328FFE /* TeacherDataModel.m in Sources */,
 				D30557461F136527007101E5 /* CNumberViewController.m in Sources */,
 				D30557491F136531007101E5 /* BOOLViewController.m in Sources */,
+				D355F9D11F14DA4200328FFE /* WholeClassDataModel_White.m in Sources */,
 				D30557401F1364C3007101E5 /* CustomPropertyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
