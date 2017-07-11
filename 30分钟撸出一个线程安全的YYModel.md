@@ -11,50 +11,58 @@
 
 要将数据模型的实现原理，先回想一下我们平时是怎么用别人的数据模型的。
 
-1、首先我们需要根据服务端返回数据格式在我们一个对应的DataModel里面将所有的参数名称定义好，并且定义好对应的类型，如：
+* 首先我们需要根据服务端返回数据格式在我们一个对应的DataModel里面将所有的参数名称定义好，并且定义好对应的类型，如：
 
-```
-@interface Person : NSObject
+	```objectivec
+	@interface Person : NSObject
+	
+	@property (nonatomic ,assign) NSUInteger age;
+	@property (nonatomic ,copy  ) NSString *name;
+	@property (nonatomic ,copy  ) NSString *sex;
+	
+	@end
+	```
 
-@property (nonatomic ,assign) NSUInteger age;
-@property (nonatomic ,copy  ) NSString *name;
-@property (nonatomic ,copy  ) NSString *sex;
-
-@end
-```
-
-然后我们传入一个```NSString```或者```NSData```之类的东西，总之最后我们将它转化为```NSDictionary```，然后就有了我们需要的一个完整的数据模型。如JSONModel的使用方法：
-```
+* 然后我们传入一个```NSString```或者```NSData```之类的东西，总之最后我们将它转化为```NSDictionary```，然后就有了我们需要的一个完整的数据模型。如JSONModel的使用方法：
+```objectivec
 Person *person = [[Person alloc]initWithString:jsonString error:NULL];
 ```
 
 所以就有了我们的设计思路
 
 
-### 设计思路
+### 得出设计思路
 
-* 首先我们利用```Runtime```将Person中所有的有用信息记录到```ClassPropertyInfo```（在下面Lists中会讲出有哪些需要记录的信息）。
+* 首先我们利用```Runtime```将Person中所有的有用信息记录到最重要的```ClassPropertyInfo```（在下面Lists中会讲出有哪些需要记录的信息）。
+* 从而得到```ClassInfo```（这里暂时用不到```MethodInfo```和```IvarInfo```）。
 * 区分需要转化的对象是```NSDictionary```还是```NSArray```。
 * 将```NSDictionary```中的```Key```与我们刚才记录在```ClassPropertyInfo```中的```name```进行对比。
+
+	>  ```NSArray```拆分成多个```NSDictionary```(或者```String```)做。
+	
+	>	暂时不支持```NSArray```中又是```NSArray```对象。
 * 将对比上的Key进行差异化赋值。
 	
 下面我们就来实现具体的步骤
 	
-### Lists
+### Step
 	
-* 一条比较丰富的属性长这样：
- ```
+* ####获取关键的```ClassPropertyInfo```信息
+
+	一条比较丰富的属性长这样：
+	
+ ```objectivec
 	@property (nonatomic, strong ,setter=setGroup: ,getter=group) NSArray<Student> * group;
  ```
  
  可以看出这个地方对我们有用的有```setter```，```getter```，```NSArray```，```Student```和```group```，当然其中的```nonatomic```和```strong```也是一些有用的信息，但我们目前姑且不谈。
  
- 关于property苹果在```<objc/runtime.h>```中给了我们这些Api，如图
+ 关于property苹果在*```<objc/runtime.h>```*中给了我们这些Api，如图
  ![Runtime_Property] (https://github.com/dengbin9009/MyFiles/blob/master/Runtime_Property.png?raw=true)
  
- 其中group就可以通过
+ 其中```name```就可以通过下面这个Api得到是```group```
  
- ```
+ ```objectivec
  /** 
  * Returns the name of a property.
  * 
@@ -65,11 +73,10 @@ Person *person = [[Person alloc]initWithString:jsonString error:NULL];
 OBJC_EXPORT const char *property_getName(objc_property_t property) 
     OBJC_AVAILABLE(10.5, 2.0, 9.0, 1.0);
  ```
- 得到。
  
  其他的都可以在苹果给我们的另外一个Api中全部获取到
  
- 	```
+ 	```objectivec
 	/** 
 	 * Returns an array of property attributes for a property. 
 	 * 
@@ -84,25 +91,104 @@ OBJC_EXPORT const char *property_getName(objc_property_t property)
  
  而这个函数取出来的是一个关于```objc_property_attribute_t ```的数组，而```objc_property_attribute_t```是一个这样的结构题：
 
-		/// Defines a property attribute
-		typedef struct {
-	    	const char *name;           /**< The name of the attribute */
-	    	const char *value;          /**< The value of the attribute (usually empty) */
-		} objc_property_attribute_t;	
+	```objectivec
+	/// Defines a property attribute
+	typedef struct {
+    	const char *name;           /**< The name of the attribute */
+    	const char *value;          /**< The value of the attribute (usually empty) */
+	} objc_property_attribute_t;	
+	```
 
- 这里的这里```name ```和```value ```的定义可以参考：[关于objc_property_attribute_t的value和name](http://blog.csdn.net/dengbin9009/article/details/72920882).```name ```包括```N```，```&```，``````，``````，``````，``````，``````，``````，``````
+ 这里的这里```name ```和```value ```的定义可以参考：
+ 
+ * *[关于objc_property_attribute_t的value和name](http://blog.csdn.net/dengbin9009/article/details/72920882)*.
+ 
+ ```name ```包括*```N```*，*```&```*，*```W ```*，*```R```*，*```G```*，*```S```*，*```V```*，*```T```*。
  
  这里面的```G ```，```S ```正好对应```getter```，```setter```，这两个比较好理解，都是对应SEL的name，不过这个这个时候通过value取出来的是一个char型字符串，这个要注意一下。比如```getter```就是```"group"```，```setter```就是```"setGroup:"```。
  
- ```T ```就稍稍复杂一点一些，这里的```T ```就是```@\"NSArray<Student>"\```（如果有两个protocol则是@\"NSArray<Student><Student2>），其中```NSArray```是这个属性的```Class```，```Student ```是对应的```protocols```，因为```protocols```可能有多个，所以他是个数组。同样的他们也都是```char```型字符串。最关键的是前面的```@```它代表这个```property```是个对象，具体这个```char```所对应的含义可以参考[iOS方法返回值和参数对应的Type Encodings](http://blog.csdn.net/dengbin9009/article/details/72922244)，其实在```objc/runtime.h```第1560行至1589行中也有对应的描述。
+ ```T ```就稍稍复杂一点一些，这里的```T ```就是```@\"NSArray<Student>"\```（如果有两个```protocol```则是```@\"NSArray<Student><Student2>```），我们可以将它分为三部分```@```，```NSArray```和```Student ```。其中```NSArray```是这个属性的```Class```，```Student ```是对应的```protocols```，因为```protocols```可能有多个，所以他是个数组。同样的他们也都是```char```型字符串。
  
- 这里有个Tip可以有效的将```@\"NSArray<Student><Student2>```分成```NSArray```，```Student ```，```Student2 ```这样的数组。
+ #####最关键的是前面的```@```它代表这个```property```是个对象，具体这个```char```所对应的含义可以参考：#####
+ 	* *[iOS方法返回值和参数对应的Type Encodings](http://blog.csdn.net/dengbin9009/article/details/72922244)*
  
- ```
- NSMutableArray *values = [_type componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"@\"<>,"]].mutableCopy;
+ #####其实在*```objc/runtime.h```*第1560行至1589行中也有对应的描述。我们将```@```这样的字符串单独存入一个新定义的属性```type```中#####
+ 
+ ---
+ 这里有个*```Tip```*可以有效的将```@\"NSArray<Student><Student2>```分成```NSArray```，```Student ```，```Student2 ```这样的数组。
+ 
+ ```objectivec
+ NSString *type = @"@\"NSArray<Student><Student2>";
+ NSMutableArray *values = [type componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"@\"<>,"]].mutableCopy;
  [values removeObject:@""];
+ // 最终values = @[@"NSArray",@"Student",@"Student2"];
  ```
+ ---
+ 
+ 到这里关于一条```Property```最重要的一些信息我们都得到了：
+ 
+ 	* ```cls ```：```NSArray```
+	* ```name ```：```group ```
+	* ```type ```：```@```
+	* ```getterSel ```：```@selector(group)```
+	* ```setterSel ```：```@selector(setGroup:) ```
+	* ```protocols ```：```Student```
+ 	
+ 
+ 然后在补上一些能够让我们更方便使用的属性，比如：
+ 
+ 	* ```property```：通过*runtime*取出的的*property*本身
+ 	* ```isCustomPropetry```：是否是系统类
+ 	* ```isMutable```：是否是系统类里面的可变类型
+ 	* ```superClsInfo```：父类*ClassInfo*，如果父类为*nil*，则它也是*nil*
+
+ 
+ 
+* ####获取关键的```ClassInfo```信息
+ 
+ ```ClassInfo```中对于本文的有用信息不多，目前我们只取：
+ 
+ * ```name```：类名，如这里的```person```
+ * ```cls```：类本身，如这里的```Person```
+ * ```propetryInfos```：参考第一步
+ 
+ 		> *获取关键的```ClassPropertyInfo```信息*
+ * ```superClsInfo ```：父类的```ClassInfo```，可用一个递归方法实现。
+ 
+			 
+			+ (instancetype)classInfoWithClass:(Class)cls{
+			    if ( !cls ) return nil;
+			    ...
+			    if ( !classInfo ) {
+			        classInfo = [[DBClassInfo alloc] initWithClass:cls];
+			    }
+			    return classInfo;
+			}
+				
+			- (instancetype)initWithClass:(Class)cls{
+			    if ( !cls ) return nil;
+			    self = [super init];
+			    if ( self ) {
+					...
+					_superCls = class_getSuperclass(cls);
+					_superClsInfo = [DBClassInfo classInfoWithClass:_superCls];
+					...
+			    }
+			    return self;
+			}
+			
+* ####区分需要转化的对象是```NSDictionary```还是```NSArray```。
+
+ * 这里只详细介绍```NSDictionary ```的处理方式
+
+
 
 	
+
+ 
+
+ 
+  
+  
 	
 
