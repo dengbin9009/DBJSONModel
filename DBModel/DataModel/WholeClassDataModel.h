@@ -1,8 +1,8 @@
 //
-//  ClassDataModel.h
+//  WholeClassDataModel.h
 //  DBModel
 //
-//  Created by DaBin on 2017/7/10.
+//  Created by DaBin on 2017/7/11.
 //  Copyright © 2017年 DaBin. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import "GroupDataModel.h"
 #import "TeacherDataModel.h"
 
-@interface ClassDataModel : NSObject
+@interface WholeClassDataModel : NSObject
 
 @property (nonatomic, strong) TeacherDataModel *teacher;
 
@@ -21,5 +21,3 @@
 @property (nonatomic, assign) BOOL isWonderfulClass;
 
 @end
-
-

@@ -38,6 +38,10 @@
 		D305575E1F1380A9007101E5 /* bool.json in Resources */ = {isa = PBXBuildFile; fileRef = D305575D1F1380A9007101E5 /* bool.json */; };
 		D30557601F138387007101E5 /* CNumber.json in Resources */ = {isa = PBXBuildFile; fileRef = D305575F1F138387007101E5 /* CNumber.json */; };
 		D30557631F1385BE007101E5 /* CNumberDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D30557621F1385BE007101E5 /* CNumberDataModel.m */; };
+		D355F9B71F14BE8600328FFE /* WholeClassDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D355F9B61F14BE8600328FFE /* WholeClassDataModel.m */; };
+		D355F9BD1F14BEC500328FFE /* TeacherDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D355F9BC1F14BEC500328FFE /* TeacherDataModel.m */; };
+		D355F9BF1F14BFB600328FFE /* wholeClass.json in Resources */ = {isa = PBXBuildFile; fileRef = D355F9BE1F14BFB600328FFE /* wholeClass.json */; };
+		D355F9C11F14BFD400328FFE /* teacher.json in Resources */ = {isa = PBXBuildFile; fileRef = D355F9C01F14BFD400328FFE /* teacher.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +101,12 @@
 		D305575F1F138387007101E5 /* CNumber.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CNumber.json; sourceTree = "<group>"; };
 		D30557611F1385BE007101E5 /* CNumberDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNumberDataModel.h; sourceTree = "<group>"; };
 		D30557621F1385BE007101E5 /* CNumberDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNumberDataModel.m; sourceTree = "<group>"; };
+		D355F9B51F14BE8600328FFE /* WholeClassDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WholeClassDataModel.h; sourceTree = "<group>"; };
+		D355F9B61F14BE8600328FFE /* WholeClassDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WholeClassDataModel.m; sourceTree = "<group>"; };
+		D355F9BB1F14BEC400328FFE /* TeacherDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherDataModel.h; sourceTree = "<group>"; };
+		D355F9BC1F14BEC500328FFE /* TeacherDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherDataModel.m; sourceTree = "<group>"; };
+		D355F9BE1F14BFB600328FFE /* wholeClass.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wholeClass.json; sourceTree = "<group>"; };
+		D355F9C01F14BFD400328FFE /* teacher.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = teacher.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +172,8 @@
 				D30557211F135E02007101E5 /* class.json */,
 				D305575D1F1380A9007101E5 /* bool.json */,
 				D305575F1F138387007101E5 /* CNumber.json */,
+				D355F9C01F14BFD400328FFE /* teacher.json */,
+				D355F9BE1F14BFB600328FFE /* wholeClass.json */,
 				D305572F1F135E49007101E5 /* PersonDataModel.h */,
 				D30557301F135E49007101E5 /* PersonDataModel.m */,
 				D30557321F135E59007101E5 /* StudentDataModel.h */,
@@ -172,6 +184,10 @@
 				D305575B1F137FD9007101E5 /* BoolDataModel.m */,
 				D30557611F1385BE007101E5 /* CNumberDataModel.h */,
 				D30557621F1385BE007101E5 /* CNumberDataModel.m */,
+				D355F9BB1F14BEC400328FFE /* TeacherDataModel.h */,
+				D355F9BC1F14BEC500328FFE /* TeacherDataModel.m */,
+				D355F9B51F14BE8600328FFE /* WholeClassDataModel.h */,
+				D355F9B61F14BE8600328FFE /* WholeClassDataModel.m */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -279,6 +295,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D355F9BF1F14BFB600328FFE /* wholeClass.json in Resources */,
 				D30557271F135E02007101E5 /* person.json in Resources */,
 				D30557251F135E02007101E5 /* class.json in Resources */,
 				D305570D1F134CA9007101E5 /* LaunchScreen.storyboard in Resources */,
@@ -288,6 +305,7 @@
 				D30557601F138387007101E5 /* CNumber.json in Resources */,
 				D30557261F135E02007101E5 /* group.json in Resources */,
 				D30557281F135E02007101E5 /* student.json in Resources */,
+				D355F9C11F14BFD400328FFE /* teacher.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +335,8 @@
 				D305575C1F137FD9007101E5 /* BoolDataModel.m in Sources */,
 				D30557551F1365A2007101E5 /* MapperViewController.m in Sources */,
 				D305573D1F136369007101E5 /* InheritViewController.m in Sources */,
+				D355F9B71F14BE8600328FFE /* WholeClassDataModel.m in Sources */,
+				D355F9BD1F14BEC500328FFE /* TeacherDataModel.m in Sources */,
 				D30557461F136527007101E5 /* CNumberViewController.m in Sources */,
 				D30557491F136531007101E5 /* BOOLViewController.m in Sources */,
 				D30557401F1364C3007101E5 /* CustomPropertyViewController.m in Sources */,
@@ -482,6 +502,7 @@
 				D30557131F134CA9007101E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

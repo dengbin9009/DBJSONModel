@@ -6,12 +6,10 @@
 //  Copyright © 2017年 DaBin. All rights reserved.
 //
 
-#import "StudentDataModel.h"
+#import "PersonDataModel.h"
 
-@interface TeacherDataModel : StudentDataModel
+@interface TeacherDataModel : PersonDataModel
 
-/*! 等级 */
-@property (nonatomic, assign) NSUInteger level;
-
+@property (nonatomic, assign) NSUInteger teacherId;
 
 @end

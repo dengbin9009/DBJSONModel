@@ -248,13 +248,30 @@
                 whiteList = [(id<DBModelProtocol>)curClassInfo.cls modelPropertyWhiteList];
             }
             
+            NSDictionary *customKeyMapper = nil;
+            if ( [curClassInfo.cls respondsToSelector:@selector(customKeyMapper)] ) {
+                customKeyMapper = [(id<DBModelProtocol>)curClassInfo.cls customKeyMapper];
+            }
+            
+            
             if ( blackList && [blackList containsObject:propertyInfo.name] ) isValidProperty = NO;
             if ( whiteList && ![whiteList containsObject:propertyInfo.name] ) isValidProperty = NO;
             if ( [propertyInfo.protocols containsObject:@"Ignore"] ) isValidProperty = NO;
             
             if ( isValidProperty ) {
                 [dictionary enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull dicKey, id  _Nonnull dicObj, BOOL * _Nonnull dicStop) {
-                    if ( [dicKey isEqualToString:propertyKey] ) {
+                    
+                    __block NSString *blockKey = dicKey;
+                    if ( [customKeyMapper isKindOfClass:[NSDictionary class]] ) {
+                        [customKeyMapper enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull customMapperKey, id  _Nonnull customMapperObj, BOOL * _Nonnull customMapperStop) {
+                            if ( [customMapperKey isEqualToString:dicKey] ) {
+                                blockKey = customMapperObj;
+                                *customMapperStop = YES;
+                            }
+                        }];
+                    }
+                    
+                    if ( [blockKey isEqualToString:propertyKey] ) {
                         [NSObject DB_modelSetPropetryToModel:blockModel withClassPropertyInfo:propertyInfo object:dicObj];
                         *dicStop = YES;
                     }

@@ -10,4 +10,8 @@
 
 @implementation TeacherDataModel
 
++ (NSDictionary *)customKeyMapper{
+    return @{@"id":@"teacherId"};
+}
+
 @end
