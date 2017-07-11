@@ -78,7 +78,7 @@ extern NSDate *DB_dateSetWithObject(id objc, NSDateFormatter *formatter){
         date = objc;
     }
     else if ( [objc isKindOfClass:[NSString class]] ) {
-        if ( formatter ) {
+        if ( formatter && [formatter isKindOfClass:[NSDateFormatter class]] ) {
             date = [formatter dateFromString:objc];
         }
         else {

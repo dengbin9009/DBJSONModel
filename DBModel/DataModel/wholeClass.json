@@ -1,11 +1,13 @@
 {
+    "openDate": "2017-03-01 09:00:00",
+    "closeDate": "2017年07月01日 15:30:00",
+    "outingDate": "2017-04-15 10:10:10",
     "teacher": {
         "name": "小明",
         "age": 18,
         "sex": "男",
         "id": "110"
     },
-    "groupCount": 2,
     "groupArray": [
         {
             "groupLeader": {

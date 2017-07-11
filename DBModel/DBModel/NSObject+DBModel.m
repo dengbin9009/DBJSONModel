@@ -132,8 +132,8 @@
             }
             else if ( DB_isDateClass(propertyInfo.cls) ) {
                 NSDateFormatter *dateFormatter = nil;
-                if ( [model respondsToSelector:@selector(modelPropertyBlackList)] ) {
-                    dateFormatter = [(id<DBModelProtocol>)model dateFormatterMapperForKey:propertyInfo.name];
+                if ( [[model class] respondsToSelector:@selector(dateFormatterMapperForKey:)] ) {
+                    dateFormatter = [(id<DBModelProtocol>)[model class] dateFormatterMapperForKey:propertyInfo.name];
                 }
                 objc_msgSend(model, propertyInfo.setterSel, DB_dateSetWithObject(object,dateFormatter));
             }
@@ -252,7 +252,6 @@
             if ( [curClassInfo.cls respondsToSelector:@selector(customKeyMapper)] ) {
                 customKeyMapper = [(id<DBModelProtocol>)curClassInfo.cls customKeyMapper];
             }
-            
             
             if ( blackList && [blackList containsObject:propertyInfo.name] ) isValidProperty = NO;
             if ( whiteList && ![whiteList containsObject:propertyInfo.name] ) isValidProperty = NO;

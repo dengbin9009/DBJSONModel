@@ -43,5 +43,16 @@
     [self.view addSubview:_textView];
 }
 
+- (NSString *)getJsonFormFileName:(NSString *)fileName{
+    NSError *error;
+    NSString *textFileContents = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"json"] encoding:NSUTF8StringEncoding error:&error];
+    if (textFileContents == nil) {
+        DBModelLog(@"Error reading text file. %@", [error localizedFailureReason]);
+        return nil;
+    }
+    return textFileContents;
+}
+
+
 
 @end

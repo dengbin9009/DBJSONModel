@@ -13,4 +13,6 @@
     UITextView *_textView;
 }
 
+- (NSString *)getJsonFormFileName:(NSString *)fileName;
+
 @end
