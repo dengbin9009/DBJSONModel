@@ -26,8 +26,10 @@
     }
     _textView.text = textFileContents;
     
-    GroupDataModel *group = [GroupDataModel DB_modelWithJson:textFileContents];
-    NSLog(@"group:\n%@",group);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        GroupDataModel *group = [GroupDataModel DB_modelWithJson:textFileContents];
+        NSLog(@"group:\n%@",group);
+    });
 }
 
 @end
