@@ -253,8 +253,8 @@
                 customKeyMapper = [(id<DBModelProtocol>)curClassInfo.cls customKeyMapper];
             }
             
-            if ( blackList && [blackList containsObject:propertyInfo.name] ) isValidProperty = NO;
-            if ( whiteList && ![whiteList containsObject:propertyInfo.name] ) isValidProperty = NO;
+            if ( blackList && [blackList isKindOfClass:[NSArray class]] && [blackList containsObject:propertyInfo.name] ) isValidProperty = NO;
+            if ( whiteList && [whiteList isKindOfClass:[NSArray class]] && ![whiteList containsObject:propertyInfo.name] ) isValidProperty = NO;
             if ( [propertyInfo.protocols containsObject:@"Ignore"] ) isValidProperty = NO;
             
             if ( isValidProperty ) {
