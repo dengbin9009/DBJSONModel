@@ -113,6 +113,7 @@
 		D355F9CD1F14DA3900328FFE /* WholeClassDataModel_Black.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WholeClassDataModel_Black.m; sourceTree = "<group>"; };
 		D355F9CF1F14DA4200328FFE /* WholeClassDataModel_White.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WholeClassDataModel_White.h; sourceTree = "<group>"; };
 		D355F9D01F14DA4200328FFE /* WholeClassDataModel_White.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WholeClassDataModel_White.m; sourceTree = "<group>"; };
+		D3B6C9371F1623A40096D958 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +156,7 @@
 				D30557061F134CA9007101E5 /* Main.storyboard */,
 				D30557091F134CA9007101E5 /* Assets.xcassets */,
 				D305570B1F134CA9007101E5 /* LaunchScreen.storyboard */,
+				D3B6C9371F1623A40096D958 /* PrefixHeader.pch */,
 				D305570E1F134CA9007101E5 /* Info.plist */,
 				D30556FD1F134CA9007101E5 /* Supporting Files */,
 			);
@@ -473,6 +475,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LJQXBPFE82;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				GCC_PREFIX_HEADER = DBModel/PrefixHeader.pch;
 				INFOPLIST_FILE = DBModel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -487,6 +490,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LJQXBPFE82;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				GCC_PREFIX_HEADER = DBModel/PrefixHeader.pch;
 				INFOPLIST_FILE = DBModel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

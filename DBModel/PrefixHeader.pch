@@ -1,0 +1,14 @@
+//
+//  PrefixHeader.pch
+//  DBModel
+//
+//  Created by DaBin on 2017/7/12.
+//  Copyright © 2017年 DaBin. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "DBModelHeader.h"
+
+#endif /* PrefixHeader_pch */

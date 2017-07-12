@@ -49,7 +49,7 @@
 }
 
 + (NSDictionary *)DB_dictionaryWithJson:(id)json{
-    NSDictionary *dic = [NSObject DB_JSONObjectWithJson:json];
+    NSDictionary *dic = [NSObject DB_objectWithJson:json];
     if ( [dic isKindOfClass:[NSDictionary class]] ) {
         return dic;
     }
@@ -63,7 +63,7 @@
 }
 
 + (NSArray *)DB_arrayWithJson:(id)json{
-    NSArray *arr = [NSObject DB_JSONObjectWithJson:json];
+    NSArray *arr = [NSObject DB_objectWithJson:json];
     if ( [arr isKindOfClass:[NSArray class]] ) {
         return arr;
     }
@@ -76,7 +76,7 @@
     return nil;
 }
 
-+ (id)DB_JSONObjectWithJson:(id)json{
++ (id)DB_objectWithJson:(id)json{
     if ( DB_isNull(json) ) return nil;
     NSData *jsonData = nil;
     if ( [json isKindOfClass:[NSData class]] ) {

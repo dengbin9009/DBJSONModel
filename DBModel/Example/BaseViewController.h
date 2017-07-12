@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DBModelHeader.h"
 
 @interface BaseViewController : UIViewController{
     UITextView *_textView;
