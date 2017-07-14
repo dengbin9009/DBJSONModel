@@ -93,6 +93,7 @@
     return JSONObject;
 }
 
+// 对一个Model的一个Property赋值
 + (void)DB_modelSetPropetryToModel:(NSObject *)model withClassPropertyInfo:(DBClassPropertyInfo * _Nonnull)propertyInfo object:(id  _Nonnull)object{
     const char *charT = [propertyInfo.type UTF8String];
     unsigned long charLength = strlen(charT);
@@ -226,7 +227,7 @@
     }
 }
 
-
+// 对一个NSDictionary类型的Model的所有Property赋值
 - (void)DB_modelSetPropetryWithDictionary:(NSDictionary *)dictionary{
     if ( !dictionary || ![dictionary isKindOfClass:[NSDictionary class]] ) return;
     
