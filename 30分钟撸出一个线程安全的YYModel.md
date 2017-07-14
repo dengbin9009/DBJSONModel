@@ -1,4 +1,8 @@
 
+### 首图震帖
+
+![震帖图](http://i1.17173cdn.com/2fhnvk/YWxqaGBf/cms3/JJlpeKblbjlfEsj.jpg)
+
 ### 前言
 
 做iOS开发以来，从最开始没有数据模型，所有数据都靠```NSString```，```NSDictionary```，```NSArrray```等系统基础的对象存储，到后来自己开始手动撸数据模型，再然后就开始接触```JSONModel```，彻底脱离了枯燥的重复的动作，后来一些国产的一些优秀的数据模型库也开始崭露头角，如```MJExtension```,如```YYModel```等。但别人的轮子始终是别人的，要是中途爆了胎还得去人家的店里(Github)提出问题，等待修复，可是现实中大多数的时候时间都不允许我们这样慢慢的等待，所以就有了这篇文章。
@@ -6,6 +10,10 @@
 在这篇文章中，你可以了解到一些实用的```Runtime```技巧，一些面向对象的思想，最重要的是可以自己做出一个可以供自己扩展的数据模型轮子。轮子虽小但优点在于方便理解，扩展性强。
 
 废话不多说，直接进入正题。
+
+### 一张图说目标功能
+
+<center>![功能图解](https://github.com/dengbin9009/MyFiles/blob/master/DBModel功能图.png?raw=true)</center>
 
 ### 想一想别人的轮子
 
@@ -44,6 +52,9 @@
 	>	暂时不支持```NSArray```中又是```NSArray```对象。
 * 将对比上的Key进行差异化赋值。
 	
+
+![](https://github.com/dengbin9009/MyFiles/blob/master/DBModel思维导图.png?raw=true)	
+
 下面我们就来实现具体的步骤
 	
 ### Step
@@ -262,12 +273,17 @@ OBJC_EXPORT const char *property_getName(objc_property_t property)
  
 ### 小结
 
- 虽然本文只是讲述了```NSDictionary```->```DataModel```的过程，没有其他的Model功能那么完善，但我相信如果能看到这里的同学对其他公共已经是可以手到擒来了。
+ 虽然本文只是讲述了```NSDictionary```->```DataModel```的过程，没有其他的Model功能那么完善，如：
  
+ * ```Model->Json```
+ * ```Model```比较
+ * 深拷贝
  
+但我相信如果能看到这里的同学对其他功能应该是已经可以手到擒来了。
  
- 
- 
+做事之前先理清楚思路，功能点全部归好类才能更好帮助我们完成它！
+
+本文所有代码可以在这里找到:*[Demo](https://github.com/dengbin9009/DBModel.git)*
 
  
 ### 参考
