@@ -32,7 +32,7 @@ FOUNDATION_EXPORT void DBModelLog(NSString *format, ...);
 @property (nullable, nonatomic, strong, readonly) DBClassInfo *superClsInfo;
 
 /*! 属性 */
-@property (nonatomic, strong) NSDictionary<NSString *,DBClassPropertyInfo *> *propetryInfos;
+@property (nonatomic, strong) NSDictionary<NSString *,DBClassPropertyInfo *> *propertyInfos;
 
 /*!
  *  初始化，保存这个类的所有属性，方法和ivar信息，这个方法线程安全
@@ -66,7 +66,7 @@ FOUNDATION_EXPORT void DBModelLog(NSString *format, ...);
 /*! 是否是可变类型 */
 @property (nonatomic, assign, readonly) BOOL isMutable;
 /*! 是否是自定义的属性 */
-@property (nonatomic, assign, readonly) BOOL isCustomPropetry;
+@property (nonatomic, assign, readonly) BOOL isCustomProperty;
 /*! 准守的协议，可为空 */
 @property (nullable, nonatomic, strong, readonly) NSArray<NSString *> *protocols;
 

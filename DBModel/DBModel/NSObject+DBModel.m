@@ -22,7 +22,7 @@
     if ( !dictionary || ![dictionary isKindOfClass:[NSDictionary class]] ) return nil;
     Class Cls = [self class];
     NSObject *model = [Cls new];
-    [model DB_modelSetPropetryWithDictionary:dictionary];
+    [model DB_modelSetPropertyWithDictionary:dictionary];
     return model;
 }
 
@@ -39,7 +39,7 @@
         if ( [aObject isKindOfClass:[NSDictionary class]] ) {
             Class Cls = [self class];
             NSObject *model = [Cls new];
-            [model DB_modelSetPropetryWithDictionary:(NSDictionary *)aObject];
+            [model DB_modelSetPropertyWithDictionary:(NSDictionary *)aObject];
             if ( model ) {
                 [modelArray addObject:model];
             }
@@ -94,7 +94,7 @@
 }
 
 // 对一个Model的一个Property赋值
-+ (void)DB_modelSetPropetryToModel:(NSObject *)model withClassPropertyInfo:(DBClassPropertyInfo * _Nonnull)propertyInfo object:(id  _Nonnull)object{
++ (void)DB_modelSetPropertyToModel:(NSObject *)model withClassPropertyInfo:(DBClassPropertyInfo * _Nonnull)propertyInfo object:(id  _Nonnull)object{
     const char *charT = [propertyInfo.type UTF8String];
     unsigned long charLength = strlen(charT);
     if ( charLength<=0 ) return;
@@ -156,7 +156,7 @@
                         NSObject *aArrayObject = arrayObject[index];
                         if ( [aArrayObject isKindOfClass:[NSDictionary class]] ) {
                             NSObject *aModel = [Cls new];
-                            [aModel DB_modelSetPropetryWithDictionary:(NSDictionary *)aArrayObject];
+                            [aModel DB_modelSetPropertyWithDictionary:(NSDictionary *)aArrayObject];
                             if ( aModel ) [modelArray addObject:aModel];
                         }
                         else if ( [aArrayObject isKindOfClass:[NSString class]] ) {
@@ -177,7 +177,7 @@
                 }
                 if ( [object isKindOfClass:[NSDictionary class]] ) {
                     NSObject *aModel = [Cls new];
-                    [aModel DB_modelSetPropetryWithDictionary:(NSDictionary *)object];
+                    [aModel DB_modelSetPropertyWithDictionary:(NSDictionary *)object];
                     objc_msgSend(model, propertyInfo.setterSel, aModel);
                 }
             }
@@ -228,7 +228,7 @@
 }
 
 // 对一个NSDictionary类型的Model的所有Property赋值
-- (void)DB_modelSetPropetryWithDictionary:(NSDictionary *)dictionary{
+- (void)DB_modelSetPropertyWithDictionary:(NSDictionary *)dictionary{
     if ( !dictionary || ![dictionary isKindOfClass:[NSDictionary class]] ) return;
     
     __block NSObject *blockModel = self;
@@ -236,7 +236,7 @@
     
     DBClassInfo *curClassInfo = classInfo;
     while (curClassInfo) {
-        [curClassInfo.propetryInfos enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull propertyKey, DBClassPropertyInfo * _Nonnull propertyInfo, BOOL * _Nonnull propertyStop) {
+        [curClassInfo.propertyInfos enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull propertyKey, DBClassPropertyInfo * _Nonnull propertyInfo, BOOL * _Nonnull propertyStop) {
             BOOL isValidProperty = YES;
             
             NSArray *blackList = nil;
@@ -272,7 +272,7 @@
                     }
                     
                     if ( [blockKey isEqualToString:propertyKey] ) {
-                        [NSObject DB_modelSetPropetryToModel:blockModel withClassPropertyInfo:propertyInfo object:dicObj];
+                        [NSObject DB_modelSetPropertyToModel:blockModel withClassPropertyInfo:propertyInfo object:dicObj];
                         *dicStop = YES;
                     }
                 }];

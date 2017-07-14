@@ -85,23 +85,23 @@ void DBModelLog(NSString *format, ...) {
 // 给ivar，属性，方法复制
 - (void)_update{
     // 置空所有的属性
-    _propetryInfos = nil;
+    _propertyInfos = nil;
     Class cls = _cls;
     
     // 属性
-    unsigned int propetryCount = 0;
-    objc_property_t *properties = class_copyPropertyList(cls, &propetryCount);
-    NSMutableDictionary *propetryInfos = [NSMutableDictionary new];
-    for (unsigned int index=0; index<propetryCount; index++) {
+    unsigned int propertyCount = 0;
+    objc_property_t *properties = class_copyPropertyList(cls, &propertyCount);
+    NSMutableDictionary *propertyInfos = [NSMutableDictionary new];
+    for (unsigned int index=0; index<propertyCount; index++) {
         objc_property_t aProperty = properties[index];
         DBClassPropertyInfo *aPropertyInfo = [[DBClassPropertyInfo alloc]initWithProperty:aProperty];
         if ( aPropertyInfo.name.length>0 ) {
-            propetryInfos[aPropertyInfo.name] = aPropertyInfo;
+            propertyInfos[aPropertyInfo.name] = aPropertyInfo;
         }
     }
     free(properties);
     
-    _propetryInfos = propetryInfos;
+    _propertyInfos = propertyInfos;
 }
 
 @end
@@ -143,11 +143,11 @@ void DBModelLog(NSString *format, ...) {
                         _cls = objc_getClass(clsName.UTF8String);
                         if ( [self isSystemClass:_cls] ) {
                             _isMutable = ([clsName rangeOfString:@"Mutable"].location != NSNotFound);
-                            _isCustomPropetry = NO;
+                            _isCustomProperty = NO;
                         }
                         else{
                             _isMutable = NO;
-                            _isCustomPropetry = YES;
+                            _isCustomProperty = YES;
                         }
                     }
                     [values removeObjectAtIndex:0];
