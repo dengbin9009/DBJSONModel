@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
   s.name         = 'DBJSONModel'
   s.summary      = 'A light model framework for iOS.'
-  s.version      = '0.5.0'
+  s.version      = '0.6.0'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.authors      = { 'dengbin9009' => 'dengbin9009@126.com' }
   s.social_media_url = 'http://www.jianshu.com/p/fafffd478134'
