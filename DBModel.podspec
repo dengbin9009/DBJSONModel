@@ -1,7 +1,7 @@
 
 
 Pod::Spec.new do |s|
-  s.name         = 'DBModel'
+  s.name         = 'DBJSONModel'
   s.summary      = 'A light model framework for iOS.'
   s.version      = '0.5.0'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
