@@ -283,11 +283,4 @@
     }
 }
 
-
-void DB_objc_msgSend(id object, SEL op, ...) NS_DEPRECATED(0_5_0, 0_5_0, 0_5_0, 0_5_0, "暂未使用"){
-    va_list args;
-    va_start(args, op);
-    ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)object, op, (__bridge id)(args));
-    va_end(args);
-}
 @end
