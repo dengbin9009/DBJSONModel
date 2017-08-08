@@ -25,7 +25,7 @@
     [super viewDidAppear:animated];
     SEL sel = NSSelectorFromString(@"valeTransformer:");
     if ( [self respondsToSelector:sel] ) {
-        objc_msgSend(self, sel);
+        ((void (*)(id, SEL))(void *) objc_msgSend)(self, sel);
     }
 }
 

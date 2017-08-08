@@ -1,12 +1,12 @@
 //
 //  main.m
-//  DBModel
+//  DBJSONModel
 //
-//  Created by DaBin on 2017/7/10.
+//  Created by DaBin on 2017/8/8.
 //  Copyright © 2017年 DaBin. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
 int main(int argc, char * argv[]) {

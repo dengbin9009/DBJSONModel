@@ -1,8 +1,8 @@
 //
 //  ViewController.h
-//  DBModel
+//  DBJSONModel
 //
-//  Created by DaBin on 2017/7/10.
+//  Created by DaBin on 2017/8/8.
 //  Copyright © 2017年 DaBin. All rights reserved.
 //
 
