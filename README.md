@@ -2,7 +2,6 @@ DBJSONModel
 ==============
 
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/ibireme/DBJSONModel/master/LICENSE)&nbsp;
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)&nbsp;
 [![CocoaPods](http://img.shields.io/cocoapods/v/DBJSONModel.svg?style=flat)](http://cocoapods.org/pods/DBJSONModel)&nbsp;
 [![CocoaPods](http://img.shields.io/cocoapods/p/DBJSONModel.svg?style=flat)](http://cocoadocs.org/docsets/DBJSONModel)&nbsp;
 [![Build Status](https://travis-ci.org/ibireme/DBJSONModel.svg?branch=master)](https://travis-ci.org/ibireme/DBJSONModel)&nbsp;
