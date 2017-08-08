@@ -125,10 +125,10 @@
             }
             if ( DB_isSimpleClass(propertyInfo.cls) ) {
                 if ( propertyInfo.isMutable ) {
-                    objc_msgSend(model, propertyInfo.setterSel, ((NSObject *)object).mutableCopy);
+                    ((void (*)(id, SEL, NSObject *))(void *) objc_msgSend)(model, propertyInfo.setterSel, ((NSObject *)object).mutableCopy);
                 }
                 else{
-                    objc_msgSend(model, propertyInfo.setterSel, object);
+                    ((void (*)(id, SEL, NSObject *))(void *) objc_msgSend)(model, propertyInfo.setterSel, object);
                 }
             }
             else if ( DB_isDateClass(propertyInfo.cls) ) {
@@ -136,17 +136,17 @@
                 if ( [[model class] respondsToSelector:@selector(dateFormatterMapperForKey:)] ) {
                     dateFormatter = [(id<DBModelProtocol>)[model class] dateFormatterMapperForKey:propertyInfo.name];
                 }
-                objc_msgSend(model, propertyInfo.setterSel, DB_dateSetWithObject(object,dateFormatter));
+                ((void (*)(id, SEL, NSDate *))(void *) objc_msgSend)(model, propertyInfo.setterSel, DB_dateSetWithObject(object,dateFormatter));
             }
             else if ( DB_isArrayClass(propertyInfo.cls) ) {
                 if ( ![object isKindOfClass:[NSArray class]] ) {
-                    objc_msgSend(model, propertyInfo.setterSel, @[].mutableCopy);
+                    ((void (*)(id, SEL, NSObject *))(void *) objc_msgSend)(model, propertyInfo.setterSel, @[].mutableCopy);
                     break;
                 }
                 NSMutableArray *arrayObject = ((NSObject *)object).mutableCopy;
                 // 如果有协议则按照协议转换对象，如果没有则直接赋值
                 if ( propertyInfo.protocols.count==0 ) {
-                    objc_msgSend(model, propertyInfo.setterSel, arrayObject);
+                    ((void (*)(id, SEL, NSMutableArray *))(void *) objc_msgSend)(model, propertyInfo.setterSel, arrayObject);
                 }
                 else{
                     Class Cls = NSClassFromString(propertyInfo.protocols.firstObject);
@@ -166,7 +166,7 @@
                             DBModelLog(@"数组：%@有不支持转换的数据",propertyInfo.name);
                         }
                     }
-                    objc_msgSend(model, propertyInfo.setterSel, blockModelArray);
+                    ((void (*)(id, SEL, NSMutableArray *))(void *) objc_msgSend)(model, propertyInfo.setterSel, blockModelArray);
                 }
             }
             else{
@@ -178,49 +178,49 @@
                 if ( [object isKindOfClass:[NSDictionary class]] ) {
                     NSObject *aModel = [Cls new];
                     [aModel DB_modelSetPropertyWithDictionary:(NSDictionary *)object];
-                    objc_msgSend(model, propertyInfo.setterSel, aModel);
+                    ((void (*)(id, SEL, NSObject *))(void *) objc_msgSend)(model, propertyInfo.setterSel, aModel);
                 }
             }
             break;
         }
         case _C_CHR:
-            objc_msgSend(model, propertyInfo.setterSel, objcNum.charValue);
+            ((void (*)(id, SEL, char))(void *) objc_msgSend)(model, propertyInfo.setterSel, objcNum.charValue);
             break;
         case _C_UCHR:
-            objc_msgSend(model, propertyInfo.setterSel, objcNum.unsignedCharValue);
+            ((void (*)(id, SEL, unsigned char))(void *) objc_msgSend)(model, propertyInfo.setterSel, objcNum.unsignedCharValue);
             break;
         case _C_SHT:
-            objc_msgSend(model, propertyInfo.setterSel, objcNum.shortValue);
+            ((void (*)(id, SEL, short))(void *) objc_msgSend)(model, propertyInfo.setterSel, objcNum.shortValue);
             break;
         case _C_USHT:
-            objc_msgSend(model, propertyInfo.setterSel, objcNum.unsignedShortValue);
+            ((void (*)(id, SEL, unsigned short))(void *) objc_msgSend)(model, propertyInfo.setterSel, objcNum.unsignedShortValue);
             break;
         case _C_INT:
-            objc_msgSend(model, propertyInfo.setterSel, objcNum.intValue);
+            ((void (*)(id, SEL, int))(void *) objc_msgSend)(model, propertyInfo.setterSel, objcNum.intValue);
             break;
         case _C_UINT:
-            objc_msgSend(model, propertyInfo.setterSel, objcNum.unsignedIntValue);
+            ((void (*)(id, SEL, unsigned int))(void *) objc_msgSend)(model, propertyInfo.setterSel, objcNum.unsignedIntValue);
             break;
         case _C_LNG:
-            objc_msgSend(model, propertyInfo.setterSel, objcNum.longValue);
+            ((void (*)(id, SEL, long))(void *) objc_msgSend)(model, propertyInfo.setterSel, objcNum.longValue);
             break;
         case _C_ULNG:
-            objc_msgSend(model, propertyInfo.setterSel, objcNum.unsignedLongValue);
+            ((void (*)(id, SEL, unsigned long))(void *) objc_msgSend)(model, propertyInfo.setterSel, objcNum.unsignedLongValue);
             break;
         case _C_LNG_LNG:
-            objc_msgSend(model, propertyInfo.setterSel, objcNum.longLongValue);
+            ((void (*)(id, SEL, long long))(void *) objc_msgSend)(model, propertyInfo.setterSel, objcNum.longLongValue);
             break;
         case _C_ULNG_LNG:
-            objc_msgSend(model, propertyInfo.setterSel, objcNum.unsignedLongLongValue);
+            ((void (*)(id, SEL, unsigned long long))(void *) objc_msgSend)(model, propertyInfo.setterSel, objcNum.unsignedLongLongValue);
             break;
         case _C_FLT:
-            objc_msgSend(model, propertyInfo.setterSel, objcNum.floatValue);
+            ((void (*)(id, SEL, long long))(void *) objc_msgSend)(model, propertyInfo.setterSel, objcNum.floatValue);
             break;
         case _C_DBL:
-            objc_msgSend(model, propertyInfo.setterSel, objcNum.doubleValue);
+            ((void (*)(id, SEL, double))(void *) objc_msgSend)(model, propertyInfo.setterSel, objcNum.doubleValue);
             break;
         case _C_BOOL:
-            objc_msgSend(model, propertyInfo.setterSel, DB_boolSetWithObject(object));
+            ((void (*)(id, SEL, BOOL))(void *) objc_msgSend)(model, propertyInfo.setterSel, DB_boolSetWithObject(object));
             break;
         default:
             break;
@@ -283,4 +283,11 @@
     }
 }
 
+
+void DB_objc_msgSend(id object, SEL op, ...) NS_DEPRECATED(0_5_0, 0_5_0, 0_5_0, 0_5_0, "暂未使用"){
+    va_list args;
+    va_start(args, op);
+    ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)object, op, (__bridge id)(args));
+    va_end(args);
+}
 @end
