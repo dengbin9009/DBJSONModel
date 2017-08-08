@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.version      = '0.5.0'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.authors      = { 'dengbin9009' => 'dengbin9009@126.com' }
-  s.social_media_url = 'http://www.jianshu.com/u/0e8949590432'
+  s.social_media_url = 'http://www.jianshu.com/p/fafffd478134'
   s.homepage     = 'https://github.com/dengbin9009/DBJSONModel'
 
   s.ios.deployment_target = '6.0'
